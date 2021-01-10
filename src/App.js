@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Person from "./Person/Person"
+import UserInput from "./User/UseInput"
+import UserOutput from "./User/UserOutput"
 // import logo from './logo.svg';
 import './App.css';
 
@@ -11,36 +13,78 @@ class App extends Component {
       { name:"Lina", age:17 },
       { name:"X", age:undefined }
     ],
-    otherState: "some other value"
+    otherState: "some other value",
+    username:[
+      {name:"A", like:"One Piece"},
+      {name:"B", like:"Bleach"},
+    ]
   }
 
-  switchNameHandler = () => {
+  switchNameHandler = (addNewName) => {
     // console.log("name changed");
     // Don't do this: this.state.persons[0].name = "Shiba Tatsuya";
     this.setState({
       persons: [
-        { name:"Shiba Tatsuya", age:18 },
+        { name:addNewName, age:18 },
         { name:"Miyuki", age:17 },
         { name:"Lina", age:17 },
         { name:"X", age:undefined }
       ]
     })
   }
+  
+  changeNameHandler = (event) => {
+    this.setState({
+      persons: [
+        { name:"Tatsuya", age:18 },
+        { name:event.target.value, age:17 },
+        { name:"Lina", age:17 },
+        { name:"X", age:undefined }
+      ]
+    })
+  }
+
+  switchUserNameHandler = (event) => {
+    this.setState({
+      username:[
+        {name:event.target.value, like:"One Piece"},
+        {name:"B", like:"Naruto"},
+      ]
+    })
+  }
 
   render() {
+
+      const buttonStyle = {
+        backgrounColor:"white",
+        font:"inherit",
+        border:"1px solid blue",
+        padding:"8px",
+        cusor:"pointer"
+        // color:'blue'
+      };
+
     return (
       <div className="App">
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
         <h1 className="App-title">Welcome to React</h1>
         <p>I'm React App</p>
         <p>I'm learning React</p>
-        <button style={{color:'blue'}} onClick={this.switchNameHandler}>Switch Name</button>
+        {/* <button style={{color:'blue'}} onClick={this.switchNameHandler.bind(this, "Shiba Tatsuya")}>Switch Name</button> */}
+        <button style={buttonStyle} onClick={() =>this.switchNameHandler("Shiba Tatsuya")}>Switch Name</button>
         <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
         <Person name={this.state.persons[1].name} 
           age={this.state.persons[1].age} 
-          click={this.switchNameHandler} >I love Shiba Tatuya</Person>
+          click={this.switchNameHandler.bind(this, "Mahesvara")}
+          change={this.changeNameHandler}
+          >I love Shiba Tatuya</Person>
         <Person name={this.state.persons[2].name} age={this.state.persons[2].age} >I'm Half American Half Japanese</Person>
         <Person name={this.state.persons[3].name} age={this.state.persons[3].age} />
+        <UserInput name={this.state.username[0].name} changed={this.switchUserNameHandler} />
+        <UserOutput name={this.state.username[0].name} like={this.state.username[0].like} />
+        {/* <UserInput name={this.state.username[0].name} changed={this.switchUserNameHandler} /> */}
+        {/* if we use multiple the data will be changed in all places */}
+        <UserOutput name={this.state.username[1].name} like={this.state.username[1].like} />
         {/* <Person name="Miyuki" age="17" />
         <Person name="Lina" age="17" >I'm Half American Half Japanese</Person>
         <Person name="X" age="Unknown" /> */}
