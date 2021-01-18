@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Radium, { StyleRoot } from "radium";
+// import Radium, { StyleRoot } from "radium";
 import Person from "./Person/Person"
 import UserInput from "./User/UseInput"
 import UserOutput from "./User/UserOutput"
@@ -150,7 +150,7 @@ class App extends Component {
      }
 
     return (
-      <StyleRoot>
+      // <StyleRoot>
         <div className="App">
           {/* <img src={logo} className="App-logo" alt="logo" /> */}
           <h1 className="App-title">Welcome to React</h1>
@@ -180,11 +180,12 @@ class App extends Component {
             To get started, edit <code>src/App.js</code> and save to reload.
           </p> */}
         </div>
-      </StyleRoot>
+      // </StyleRoot>
     );
     // return React.createElement('div', {className:"App"}, React.createElement('h1',null,  'I\'m React App'));
   }
 }
 
-export default Radium(App);
+// export default Radium(App);
+export default App;
 
