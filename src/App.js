@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 // import Radium, { StyleRoot } from "radium";
+import Styled from "styled-components";
 import Person from "./Person/Person"
 import UserInput from "./User/UseInput"
 import UserOutput from "./User/UserOutput"
@@ -103,14 +104,27 @@ class App extends Component {
         // color:'blue'
       };
 
+      const StyledButton = Styled.button`
+        background-color: ${props => props.alt ? 'red' : 'green'};
+        color: white;
+        font: inherit;
+        border: 1px solid blue;
+        padding: 8px;
+        cursor: pointer;
+        &:hover {
+          background-color: ${props => props.alt ? 'lightcoral' : 'lightgreen'};
+          color: black;
+        }
+      `;
+
     let persons = null;
 
     if(this.state.showPersons){
-      buttonStyle.backgroundColor = "red";
-      buttonStyle[":hover"] = {
-        backgroundColor:"lightcoral",
-        color:"black"
-      }
+      // buttonStyle.backgroundColor = "red";
+      // buttonStyle[":hover"] = {
+      //   backgroundColor:"lightcoral",
+      //   color:"black"
+      // }
       persons = (
         <div>
           {this.state.persons.map((person, index) =>{
@@ -158,7 +172,11 @@ class App extends Component {
           <p className={classes.join(" ")} >I'm learning React</p>
           {/* <button style={{color:'blue'}} onClick={this.switchNameHandler.bind(this, "Shiba Tatsuya")}>Switch Name</button> */}
           {/* <button style={buttonStyle} onClick={() =>this.switchNameHandler("Shiba Tatsuya")}>Switch Name</button> */}
-          <button style={buttonStyle} onClick={this.togglePesonsHandler}>Toggle Persons</button>
+          <StyledButton alt={this.state.showPersons} onClick={this.togglePesonsHandler}>
+            {/* <button style={buttonStyle} onClick={this.togglePesonsHandler}> */}
+              Toggle Persons
+            {/* </button> */}
+          </StyledButton>
           {persons}
           {/* { this.state.showPersons === true ? */}
               {/* : null
