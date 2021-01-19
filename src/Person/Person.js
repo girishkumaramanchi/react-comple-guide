@@ -32,6 +32,7 @@ const person = (props) => {
             <p>{props.children}</p>
             <input type="text" onChange={props.change} value={props.name} />
             {/* <hr /> */}
+            <button className="button">X</button>
         {/* </div> */}
         </StyledDiv>
     )
