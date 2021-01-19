@@ -172,11 +172,12 @@ class App extends Component {
           <p className={classes.join(" ")} >I'm learning React</p>
           {/* <button style={{color:'blue'}} onClick={this.switchNameHandler.bind(this, "Shiba Tatsuya")}>Switch Name</button> */}
           {/* <button style={buttonStyle} onClick={() =>this.switchNameHandler("Shiba Tatsuya")}>Switch Name</button> */}
-          <StyledButton alt={this.state.showPersons} onClick={this.togglePesonsHandler}>
+          {/* <StyledButton alt={this.state.showPersons} onClick={this.togglePesonsHandler}> */}
             {/* <button style={buttonStyle} onClick={this.togglePesonsHandler}> */}
+            <button className="button" onClick={this.togglePesonsHandler}>
               Toggle Persons
-            {/* </button> */}
-          </StyledButton>
+            </button>
+          {/* </StyledButton> */}
           {persons}
           {/* { this.state.showPersons === true ? */}
               {/* : null
