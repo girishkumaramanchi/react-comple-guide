@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 // import Radium, { StyleRoot } from "radium";
-import Styled from "styled-components";
+// import Styled from "styled-components";
 import Person from "./Person/Person"
 import UserInput from "./User/UseInput"
 import UserOutput from "./User/UserOutput"
 // import logo from './logo.svg';
-import './App.css';
+import appClasses from './App.css';
 
 class App extends Component {
   state = {
@@ -104,18 +104,20 @@ class App extends Component {
         // color:'blue'
       };
 
-      const StyledButton = Styled.button`
-        background-color: ${props => props.alt ? 'red' : 'green'};
-        color: white;
-        font: inherit;
-        border: 1px solid blue;
-        padding: 8px;
-        cursor: pointer;
-        &:hover {
-          background-color: ${props => props.alt ? 'lightcoral' : 'lightgreen'};
-          color: black;
-        }
-      `;
+      let btnClass = [appClasses.button]
+
+      // const StyledButton = Styled.button`
+      //   background-color: ${props => props.alt ? 'red' : 'green'};
+      //   color: white;
+      //   font: inherit;
+      //   border: 1px solid blue;
+      //   padding: 8px;
+      //   cursor: pointer;
+      //   &:hover {
+      //     background-color: ${props => props.alt ? 'lightcoral' : 'lightgreen'};
+      //     color: black;
+      //   }
+      // `;
 
     let persons = null;
 
@@ -125,6 +127,7 @@ class App extends Component {
       //   backgroundColor:"lightcoral",
       //   color:"black"
       // }
+      btnClass.push(appClasses.Red);
       persons = (
         <div>
           {this.state.persons.map((person, index) =>{
@@ -157,15 +160,15 @@ class App extends Component {
      const classes = [];
 
      if(this.state.persons.length <= 2){
-      classes.push("red");      // classes = ["red"]
+      classes.push(appClasses.red);      // classes = ["red"]
      }
      if(this.state.persons.length <= 1){
-       classes.push("bold");    // classes = ["red", "bold"]
+       classes.push(appClasses.bold);    // classes = ["red", "bold"]
      }
 
     return (
       // <StyleRoot>
-        <div className="App">
+        <div className={appClasses.App}>
           {/* <img src={logo} className="App-logo" alt="logo" /> */}
           <h1 className="App-title">Welcome to React</h1>
           <p>I'm React App</p>
@@ -174,7 +177,7 @@ class App extends Component {
           {/* <button style={buttonStyle} onClick={() =>this.switchNameHandler("Shiba Tatsuya")}>Switch Name</button> */}
           {/* <StyledButton alt={this.state.showPersons} onClick={this.togglePesonsHandler}> */}
             {/* <button style={buttonStyle} onClick={this.togglePesonsHandler}> */}
-            <button className="button" onClick={this.togglePesonsHandler}>
+            <button className={btnClass.join(" ")} onClick={this.togglePesonsHandler}>
               Toggle Persons
             </button>
           {/* </StyledButton> */}

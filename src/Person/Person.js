@@ -1,21 +1,21 @@
 import React from "react"
 // import Radium from "radium"
-import Styled from "styled-components"
-// import "./Person.css";
+// import Styled from "styled-components"
+import "./Person.css";
 
-const StyledDiv = Styled.div`
-    width: 60%;
-    margin: 10px auto;
-    border: 1px solid #eee;
-    box-shadow: 0 2px 3px #ccc;
-    padding: 16px;
-    text-align: center;
+// const StyledDiv = Styled.div`
+//     width: 60%;
+//     margin: 10px auto;
+//     border: 1px solid #eee;
+//     box-shadow: 0 2px 3px #ccc;
+//     padding: 16px;
+//     text-align: center;
 
-    @media (min-width: 500px) {
-        width:450px
-    }
+//     @media (min-width: 500px) {
+//         width:450px
+//     }
 
-`;
+// `;
 
 const person = (props) => {
 
@@ -26,15 +26,15 @@ const person = (props) => {
     };
 
     return( 
-        <StyledDiv>
-        {/* <div className="Person" style={style} > */}
+        // <StyledDiv>
+        <div className="Person" style={style} >
             <p onClick={props.click}>I'm {props.name} and I'm {props.age} years old. My lucky number is {Math.floor(Math.random() * 30)}</p>
             <p>{props.children}</p>
             <input type="text" onChange={props.change} value={props.name} />
             {/* <hr /> */}
             <button className="button">X</button>
-        {/* </div> */}
-        </StyledDiv>
+        </div>
+        // </StyledDiv>
     )
 }
 
