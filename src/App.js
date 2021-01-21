@@ -104,7 +104,7 @@ class App extends Component {
         // color:'blue'
       };
 
-      let btnClass = [appClasses.button]
+      let btnClass = "";
 
       // const StyledButton = Styled.button`
       //   background-color: ${props => props.alt ? 'red' : 'green'};
@@ -127,7 +127,7 @@ class App extends Component {
       //   backgroundColor:"lightcoral",
       //   color:"black"
       // }
-      btnClass.push(appClasses.Red);
+      btnClass = appClasses.Red;
       persons = (
         <div>
           {this.state.persons.map((person, index) =>{
@@ -177,7 +177,7 @@ class App extends Component {
           {/* <button style={buttonStyle} onClick={() =>this.switchNameHandler("Shiba Tatsuya")}>Switch Name</button> */}
           {/* <StyledButton alt={this.state.showPersons} onClick={this.togglePesonsHandler}> */}
             {/* <button style={buttonStyle} onClick={this.togglePesonsHandler}> */}
-            <button className={btnClass.join(" ")} onClick={this.togglePesonsHandler}>
+            <button className={btnClass} onClick={this.togglePesonsHandler}>
               Toggle Persons
             </button>
           {/* </StyledButton> */}

@@ -1,7 +1,7 @@
 import React from "react"
 // import Radium from "radium"
 // import Styled from "styled-components"
-import "./Person.css";
+import personClasses from "./Person.css";
 
 // const StyledDiv = Styled.div`
 //     width: 60%;
@@ -27,7 +27,8 @@ const person = (props) => {
 
     return( 
         // <StyledDiv>
-        <div className="Person" style={style} >
+        // <div className={personClasses.Person}>
+        <div className="Person">
             <p onClick={props.click}>I'm {props.name} and I'm {props.age} years old. My lucky number is {Math.floor(Math.random() * 30)}</p>
             <p>{props.children}</p>
             <input type="text" onChange={props.change} value={props.name} />
