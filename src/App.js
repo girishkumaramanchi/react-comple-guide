@@ -6,6 +6,7 @@ import UserInput from "./User/UseInput"
 import UserOutput from "./User/UserOutput"
 // import logo from './logo.svg';
 import appClasses from './App.css';
+import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
 
 class App extends Component {
   state = {
@@ -46,9 +47,23 @@ class App extends Component {
   }
   
   changeNameHandler = (event, index) => {
+    const personIndex = this.state.persons.findIndex( per =>{
+      per.id === index;
+    })
+    const person = {
+      ...this.state.persons[personIndex]
+    };
+    person.name = event.target.value;
+    // person.name = event.input.value;
+    // TypeError: Cannot read property 'value' of undefined
     const persons = [...this.state.persons];
-    persons[index].name = event.target.value;
-    this.setState({persons:persons});
+    persons[index] = person
+    this.setState({
+      persons:persons
+    });
+    // const persons = [...this.state.persons];
+    // persons[index].name = event.target.value;
+    // this.setState({persons:persons});
     // if we are using ids
     // const personIndex = this.state.persons.findIndex(x => {
     //   return x.id === id;  
@@ -131,11 +146,14 @@ class App extends Component {
       persons = (
         <div>
           {this.state.persons.map((person, index) =>{
-            return <Person name={person.name} 
-                           age={person.age} 
-                           click={() => this.deletePersonHandler(index)} 
-                           change={(event) => this.changeNameHandler(event, index)}
-                           key={index} ></Person>
+            return <ErrorBoundary key={index} >
+                      <Person name={person.name} 
+                        age={person.age} 
+                        click={() => this.deletePersonHandler(index)} 
+                        change={(event) => this.changeNameHandler(event, index)}
+                      >
+                      </Person>
+                    </ErrorBoundary>
             // return <Person name={person.name} age={person.age} click={this.deletePersonHandler.bind(this, index)} key={index} ></Person>
           })}
           {/* <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
