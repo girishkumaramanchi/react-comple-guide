@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Person from "../components/Persons/Person/Person"
-import UserInput from "../components/Users/User/UseInput"
-import UserOutput from "../components/Users/User/UserOutput"
+// import Person from "../components/Persons/Person/Person"
+import Cockpit from "../components/Cockpit/Cockpit"
+import Persons from "../components/Persons/Persons"
+import Users from "../components/Users/Users"
 import appClasses from './App.css';
 
 class App extends Component {
@@ -77,7 +78,12 @@ class App extends Component {
       btnClass = appClasses.Red;
       persons = (
         <div>
-          {this.state.persons.map((person, index) =>{
+          return  <Persons persons={this.state.persons}
+                  clicked={this.deletePersonHandler} 
+                  changed={this.changeNameHandler}
+                  >
+                  </Persons>
+          {/* {this.state.persons.map((person, index) =>{
             return <Person name={person.name} 
                     age={person.age} 
                     click={() => this.deletePersonHandler(index)} 
@@ -85,21 +91,17 @@ class App extends Component {
                     key={index}
                   >
                   </Person>
-          })}
+          })} */}
         </div> 
       );
     }
 
     let users = (
       <div>
-        {this.state.username.map((user, index) => {
-          return (
-            <div key={index}>
-              <UserInput name={user.name} changed={(event) => this.switchUserNameHandler(event,user.name)} key={index}></UserInput>
-              <UserOutput name={user.name} like={user.like} key={user.like}></UserOutput>
-            </div>
-          );
-        })}
+        <Users username={this.state.username}
+               switchUserNameHandler={this.switchUserNameHandler}
+        >
+        </Users>
       </div>
     );
 
@@ -114,12 +116,7 @@ class App extends Component {
 
     return (
         <div className={appClasses.App}>
-          <h1 className="App-title">Welcome to React</h1>
-          <p>I'm React App</p>
-          <p className={classes.join(" ")} >I'm learning React</p>
-            <button className={btnClass} onClick={this.togglePesonsHandler}>
-              Toggle Persons
-            </button>
+          <Cockpit btnClass={btnClass} classes={classes} togglePesonsHandler={this.togglePesonsHandler}></Cockpit>
           {persons}
           {users}
           {/* <UserInput name={this.state.username[0].name} changed={this.switchUserNameHandler} />
