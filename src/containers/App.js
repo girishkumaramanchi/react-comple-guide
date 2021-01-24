@@ -63,13 +63,9 @@ class App extends Component {
 
   render() {
 
-
-      let btnClass = "";
-
     let persons = null;
 
     if(this.state.showPersons){
-      btnClass = appClasses.Red;
       persons = (
         <div>
           <Persons persons={this.state.persons}
@@ -90,18 +86,13 @@ class App extends Component {
       </div>
     );
 
-     const classes = [];
-
-     if(this.state.persons.length <= 2){
-      classes.push(appClasses.red);      // classes = ["red"]
-     }
-     if(this.state.persons.length <= 1){
-       classes.push(appClasses.bold);    // classes = ["red", "bold"]
-     }
-
     return (
         <div className={appClasses.App}>
-          <Cockpit btnClass={btnClass} classes={classes} togglePesonsHandler={this.togglePesonsHandler}></Cockpit>
+          <Cockpit persons={this.state.persons} 
+                   showPersons={this.state.showPersons} 
+                   togglePesonsHandler={this.togglePesonsHandler}
+          >
+          </Cockpit>
           {persons}
           {users}
         </div>
