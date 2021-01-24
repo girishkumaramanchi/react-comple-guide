@@ -52,12 +52,6 @@ class App extends Component {
     // const users = [...this.state.username];
     // users[index].name = event.target.value;
     // this.setState({username:users});
-    // this.setState({
-    //   username:[
-    //     {name:event.target.value, like:"One Piece"},
-    //     {name:"B", like:"Naruto"},
-    //   ]
-    // })
   }
 
   togglePesonsHandler = () => {
@@ -78,20 +72,11 @@ class App extends Component {
       btnClass = appClasses.Red;
       persons = (
         <div>
-          return  <Persons persons={this.state.persons}
-                  clicked={this.deletePersonHandler} 
-                  changed={this.changeNameHandler}
-                  >
-                  </Persons>
-          {/* {this.state.persons.map((person, index) =>{
-            return <Person name={person.name} 
-                    age={person.age} 
-                    click={() => this.deletePersonHandler(index)} 
-                    change={(event) => this.changeNameHandler(event, index)}
-                    key={index}
-                  >
-                  </Person>
-          })} */}
+          <Persons persons={this.state.persons}
+            clicked={this.deletePersonHandler} 
+            changed={this.changeNameHandler}
+          >
+          </Persons>
         </div> 
       );
     }
@@ -119,10 +104,6 @@ class App extends Component {
           <Cockpit btnClass={btnClass} classes={classes} togglePesonsHandler={this.togglePesonsHandler}></Cockpit>
           {persons}
           {users}
-          {/* <UserInput name={this.state.username[0].name} changed={this.switchUserNameHandler} />
-          <UserOutput name={this.state.username[0].name} like={this.state.username[0].like} />
-          <UserOutput name={this.state.username[1].name} like={this.state.username[1].like} /> */}
-          
         </div>
     );
   }
