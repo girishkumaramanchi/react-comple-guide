@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Person from "./Person/Person"
-import UserInput from "./User/UseInput"
-import UserOutput from "./User/UserOutput"
+import Person from "../components/Persons/Person/Person"
+import UserInput from "../components/Users/User/UseInput"
+import UserOutput from "../components/Users/User/UserOutput"
 import appClasses from './App.css';
 
 class App extends Component {
@@ -95,7 +95,7 @@ class App extends Component {
         {this.state.username.map((user, index) => {
           return (
             <div key={index}>
-              <UserInput name={user.name} changed={(event) => this.switchUserNameHandler(event,user.name)} key={user.name}></UserInput>
+              <UserInput name={user.name} changed={(event) => this.switchUserNameHandler(event,user.name)} key={index}></UserInput>
               <UserOutput name={user.name} like={user.like} key={user.like}></UserOutput>
             </div>
           );
