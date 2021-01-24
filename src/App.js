@@ -36,13 +36,27 @@ class App extends Component {
     this.setState({persons:persons});
   }
 
-  switchUserNameHandler = (event) => {
-    this.setState({
-      username:[
-        {name:event.target.value, like:"One Piece"},
-        {name:"B", like:"Naruto"},
-      ]
+  switchUserNameHandler = (event, name) => {
+    const index = this.state.username.findIndex(user => {
+      return user.name === name;
     })
+    const user = {
+      ...this.state.username[index]
+    }
+    user.name = event.target.value;
+    const users = [...this.state.username];
+    users[index] = user;
+    this.setState({username:users});
+    // using index
+    // const users = [...this.state.username];
+    // users[index].name = event.target.value;
+    // this.setState({username:users});
+    // this.setState({
+    //   username:[
+    //     {name:event.target.value, like:"One Piece"},
+    //     {name:"B", like:"Naruto"},
+    //   ]
+    // })
   }
 
   togglePesonsHandler = () => {
@@ -76,6 +90,19 @@ class App extends Component {
       );
     }
 
+    let users = (
+      <div>
+        {this.state.username.map((user, index) => {
+          return (
+            <div key={index}>
+              <UserInput name={user.name} changed={(event) => this.switchUserNameHandler(event,user.name)} key={user.name}></UserInput>
+              <UserOutput name={user.name} like={user.like} key={user.like}></UserOutput>
+            </div>
+          );
+        })}
+      </div>
+    );
+
      const classes = [];
 
      if(this.state.persons.length <= 2){
@@ -94,9 +121,10 @@ class App extends Component {
               Toggle Persons
             </button>
           {persons}
-          <UserInput name={this.state.username[0].name} changed={this.switchUserNameHandler} />
+          {users}
+          {/* <UserInput name={this.state.username[0].name} changed={this.switchUserNameHandler} />
           <UserOutput name={this.state.username[0].name} like={this.state.username[0].like} />
-          <UserOutput name={this.state.username[1].name} like={this.state.username[1].like} />
+          <UserOutput name={this.state.username[1].name} like={this.state.username[1].like} /> */}
           
         </div>
     );
