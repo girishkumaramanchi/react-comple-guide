@@ -2,8 +2,10 @@ import React from "react";
 import UserInput from "./User/UseInput"
 import UserOutput from "./User/UserOutput"
 
-const Users = (props) => (
-    props.username.map((user, index) => {
+const Users = (props) => {
+    console.log("[Users.js] rendering");
+    return props.username.map((user, index) => {
+        console.log("[Users.js] rendering", index);
         return (
             <div key={index}>
                 <UserInput name={user.name} 
@@ -17,6 +19,6 @@ const Users = (props) => (
             </div>
         );
     })
-);
+};
 
 export default Users;
