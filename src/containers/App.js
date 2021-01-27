@@ -6,6 +6,12 @@ import Users from "../components/Users/Users"
 import appClasses from './App.css';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    console.log("[App.js] constructor");
+    // this.state = {};
+  }
+
   state = {
     persons: [
       { name:"Tatsuya", age:18 },
@@ -21,6 +27,34 @@ class App extends Component {
     showPersons: false
   }
 
+  static getDerivedStateFromProps(props, state) {
+    console.log("[App.js] getDerivedStateFromProps", props);
+    return state;
+  }
+
+  // componentWillMount() {
+  //   console.log("[App.js] component  will Mounte");
+  // }
+
+  componentDidMount() {
+    console.log("[App.js] component Mounted");
+  }
+
+  shouldComponentUpdate(nextProps, nextState){
+    console.log("[App.js] shouldComponentUpdate");
+    // return true;
+    return false;
+  }
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log("[App.js] getSnapshotBeforeUpdate");
+    return {message: "App snapshot!"};
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log("[APP.js] componentDidUpdate");
+    console.log(snapshot);
+  }
 
   deletePersonHandler = (index) => {
     // const persons = this.state.persons.slice();
@@ -62,7 +96,7 @@ class App extends Component {
   }
 
   render() {
-
+    console.log("[App.js] render start");
     let persons = null;
 
     if(this.state.showPersons){
@@ -88,7 +122,8 @@ class App extends Component {
 
     return (
         <div className={appClasses.App}>
-          <Cockpit persons={this.state.persons} 
+          <Cockpit title={this.props.appTitle}
+                   persons={this.state.persons} 
                    showPersons={this.state.showPersons} 
                    togglePesonsHandler={this.togglePesonsHandler}
           >

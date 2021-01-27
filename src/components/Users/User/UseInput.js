@@ -1,7 +1,7 @@
 import React from "react"
 
 const userInput = (props) => {
-
+    console.log("[UserInput.js] rendering");
     const style = {
         marginTop: "6px",
         height: "30px",

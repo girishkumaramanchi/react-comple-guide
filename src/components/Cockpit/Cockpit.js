@@ -2,7 +2,7 @@ import React from "react";
 import cockpitClasses from "./Cockpit.css"
 
 const cockpit = (props) => {
-
+    console.log("[Cockpit.js] rendering");
     let btnClass = "";
     const classes = [];
     
@@ -19,7 +19,7 @@ const cockpit = (props) => {
 
     return (
         <div className={cockpitClasses.Cockpit}>
-            <h1 className="App-title">Welcome to React</h1>
+            <h1 className="App-title">{props.title}</h1>
             <p>I'm React App</p>
             <p className={classes.join(" ")} >I'm learning React</p>
             <button className={btnClass} onClick={props.togglePesonsHandler}>
